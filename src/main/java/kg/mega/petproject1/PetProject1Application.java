@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class PetProject1Application {
-	ты че тут пишешь
 фывафывафыафыва
 	фывафывафываыфвафывафыва
 	public static void main(String[] args) {
