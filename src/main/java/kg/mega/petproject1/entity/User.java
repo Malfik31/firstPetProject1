@@ -1,4 +1,4 @@
-package kg.mega.petproject1.Entity;
+package kg.mega.petproject1.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
