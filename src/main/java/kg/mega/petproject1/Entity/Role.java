@@ -11,15 +11,16 @@ import org.springframework.security.core.GrantedAuthority;
 @Setter
 @Table(name = "role")
 public class Role implements GrantedAuthority {
-@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int id;
 
-private String name;
+    private String name;
 
     @Override
     public String getAuthority() {
-        return "";
+        return name ;
     }
 }
