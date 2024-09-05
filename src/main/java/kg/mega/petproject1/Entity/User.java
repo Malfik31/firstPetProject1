@@ -11,14 +11,14 @@ import java.util.List;
 
 @Getter
 @Setter
-@Table(name='users')
+@Table(name = "user")
 @Entity
-public class Users {
-@Id
-private Long id;
-private String name;
-private String email;
-@ManyToMany(mappedBy = "users")
+public class User {
+    @Id
+    private Long id;
+    private String name;
+    private String email;
+    @ManyToMany(mappedBy = "users")
     private List<Role> roles;
 
 }
