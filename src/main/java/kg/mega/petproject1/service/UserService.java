@@ -1,11 +1,11 @@
 package kg.mega.petproject1.service;
 
 import kg.mega.petproject1.entity.User;
+import kg.mega.petproject1.exception.UserNotFoundException;
 import kg.mega.petproject1.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -23,8 +23,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
+    public User findById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id.toString()));
     }
 
     public void delete(Long id) {
@@ -36,6 +36,6 @@ public class UserService {
             user.setId(id);
             return userRepository.save(user);
         }
-        return null;
+        throw new UserNotFoundException(id.toString());
     }
 }
