@@ -31,7 +31,8 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public User update(Long id, User user) {
+    public User update(User user) {
+        Long id = user.getId();
         if (userRepository.existsById(id)) {
             user.setId(id);
             return userRepository.save(user);

@@ -17,7 +17,7 @@ public class RoleController {
         return roleService.findAll();
     }
 
-    @PutMapping
+    @PostMapping
     public Role addRole(@RequestBody Role role) {
         return roleService.save(role);
     }
@@ -33,7 +33,7 @@ public class RoleController {
         return roleService.getById(id);
     }
 
-    @PostMapping
+    @PutMapping
     public Role updateRole(@RequestBody Role role) {
         return roleService.save(role);
     }
