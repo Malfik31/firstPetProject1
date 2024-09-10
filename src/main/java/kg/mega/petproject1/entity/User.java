@@ -18,6 +18,8 @@ public class User {
     private Long id;
     private String name;
     private String email;
+    private String password;
+    private String username;
     @ManyToMany(mappedBy = "users")
     private List<Role> roles;
 
