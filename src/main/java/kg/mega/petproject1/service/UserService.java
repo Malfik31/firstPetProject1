@@ -3,12 +3,15 @@ package kg.mega.petproject1.service;
 import kg.mega.petproject1.entity.User;
 import kg.mega.petproject1.exception.UserNotFoundException;
 import kg.mega.petproject1.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserService {
+public class  UserService implements UserDetailsService {
     private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
@@ -38,5 +41,10 @@ public class UserService {
             return userRepository.save(user);
         }
         throw new UserNotFoundException(id.toString());
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
     }
 }
