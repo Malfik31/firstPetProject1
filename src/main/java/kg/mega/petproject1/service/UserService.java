@@ -1,5 +1,6 @@
 package kg.mega.petproject1.service;
 
+import kg.mega.petproject1.entity.Role;
 import kg.mega.petproject1.entity.User;
 import kg.mega.petproject1.exception.UserNotFoundException;
 import kg.mega.petproject1.repository.UserRepository;
@@ -46,5 +47,9 @@ public class  UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return null;
+    }
+    public List<User> getByRole(String role) {
+        return userRepository.findByRole(role);
+
     }
 }

@@ -32,7 +32,7 @@ public class RoleController {
     public Role getRoleById(@PathVariable int id) {
         return roleService.getById(id);
     }
-
+    
     @PutMapping
     public Role updateRole(@RequestBody Role role) {
         return roleService.save(role);

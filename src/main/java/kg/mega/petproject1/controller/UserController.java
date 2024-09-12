@@ -1,5 +1,6 @@
 package kg.mega.petproject1.controller;
 
+import kg.mega.petproject1.entity.Role;
 import kg.mega.petproject1.entity.User;
 import kg.mega.petproject1.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -38,5 +39,10 @@ public class UserController {
     @PutMapping
     public User updateUser(@RequestBody User user) {
         return userService.update(user);
+    }
+
+    @GetMapping("/role/{role}")
+    public List<User> findByRole(@PathVariable String role) {
+        return userService.getByRole(role);
     }
 }

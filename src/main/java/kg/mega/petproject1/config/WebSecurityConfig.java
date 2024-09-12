@@ -22,8 +22,12 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http, UserService userService) throws Exception {
         return http.csrf(csrf -> csrf.ignoringRequestMatchers(new AntPathRequestMatcher("/**")))
                 .authorizeHttpRequests(request -> request
+                        /*.requestMatchers("/user/**")
+                        .permitAll()
+                        .requestMatchers("/role/**")
+                        .permitAll()*/
                         .anyRequest()
-                        .authenticated())
+                        .permitAll())
                 .authenticationProvider(authProvider(userService))
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
