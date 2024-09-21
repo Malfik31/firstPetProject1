@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("users")
 public class UserController {
     private final UserService userService;
 
@@ -17,10 +18,11 @@ public class UserController {
         return userService.findAll();
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public void getById(@PathVariable Integer id) {
         userService.getById(id);
     }
+
     @PostMapping
     public void create(@RequestBody User user) {
         userService.create(user);
@@ -31,7 +33,7 @@ public class UserController {
         userService.update(user);
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
         userService.deleteById(id);
     }
