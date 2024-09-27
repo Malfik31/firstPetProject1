@@ -1,7 +1,9 @@
 package kg.mega.petproject1.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import kg.mega.petproject1.entity.Role;
 import kg.mega.petproject1.entity.User;
+import kg.mega.petproject1.repository.RoleRepository;
 import kg.mega.petproject1.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     public List<User> findAll() {
         return userRepository.findAll();
@@ -37,6 +40,16 @@ public class UserService {
             System.out.println(user.get());
         }
         throw new EntityNotFoundException("User with id: " + id + " not found");
+    }
+    public List<User> findUserByRoleId(Integer roleId ) {
+        Optional<Role> roleOptional = roleRepository.findById(roleId);
+        if (roleOptional.isPresent()) {
+            Role role = roleOptional.get();
+            return userRepository.findUserByRolesContaining(role);
+        } else {
+            throw new EntityNotFoundException("User with roleId: " + roleId + " not found");
+        }
+
     }
 
 }

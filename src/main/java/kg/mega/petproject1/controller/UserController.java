@@ -37,4 +37,10 @@ public class UserController {
     public void delete(@PathVariable Integer id) {
         userService.deleteById(id);
     }
+
+    @GetMapping("/role/{roleId}")
+    public List<User> getUserByRoleId(@PathVariable("roleId") Integer roleId) {
+        return userService.findUserByRoleId(roleId);
+
+    }
 }
