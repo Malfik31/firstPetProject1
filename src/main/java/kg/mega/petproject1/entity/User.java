@@ -20,6 +20,10 @@ public class User {
     private String name;
     private String lastName;
 
+    @ManyToOne
+    @JoinColumn(name = "head_user_id")
+    private User user;
+
     @ManyToMany
     @JoinTable(
             name = "users_roles",
