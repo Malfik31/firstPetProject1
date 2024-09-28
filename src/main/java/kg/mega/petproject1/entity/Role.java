@@ -1,5 +1,6 @@
 package kg.mega.petproject1.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,5 +17,6 @@ public class Role {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
+    @JsonBackReference
     private List<User> users;
 }

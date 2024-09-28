@@ -45,7 +45,7 @@ public class UserService {
         Optional<Role> roleOptional = roleRepository.findById(roleId);
         if (roleOptional.isPresent()) {
             Role role = roleOptional.get();
-            return userRepository.findUserByRolesContaining(role);
+            return role.getUsers();
         } else {
             throw new EntityNotFoundException("User with roleId: " + roleId + " not found");
         }

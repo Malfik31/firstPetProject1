@@ -1,5 +1,6 @@
 package kg.mega.petproject1.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +26,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+    @JsonManagedReference
     private List<Role> roles;
 
 }
