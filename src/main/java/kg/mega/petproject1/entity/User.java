@@ -21,6 +21,10 @@ public class User {
     private String lastName;
 
     @ManyToOne
+    @JoinColumn(name = "replacing_id")
+    private User replacing;
+
+    @ManyToOne
     @JoinColumn(name = "head_user_id")
     private User user;
 
