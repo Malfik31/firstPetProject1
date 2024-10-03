@@ -2,14 +2,15 @@ package kg.mega.petproject1.controller;
 
 import kg.mega.petproject1.entity.User;
 import kg.mega.petproject1.service.UserService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
-@RequestMapping("users")
+@RequiredArgsConstructor
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
 
@@ -19,23 +20,26 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public void getById(@PathVariable Integer id) {
-        userService.getById(id);
+    public User getById(@PathVariable Integer id) {
+        return userService.getById(id);
     }
 
     @PostMapping
-    public void create(@RequestBody User user) {
+    public ResponseEntity<User> create(@RequestBody User user) {
         userService.create(user);
+        return ResponseEntity.ok(user);
     }
 
     @PutMapping
-    public void update(@RequestBody User user) {
+    public ResponseEntity<?> update(@RequestBody User user) {
         userService.update(user);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
         userService.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/role/{roleId}")
