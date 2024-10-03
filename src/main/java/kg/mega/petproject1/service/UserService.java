@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UserService {
+public class  UserService  {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
@@ -51,5 +51,6 @@ public class UserService {
         }
 
     }
+
 
 }
