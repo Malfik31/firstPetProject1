@@ -41,6 +41,15 @@ public class User implements UserDetails {
     @JsonManagedReference
     private List<Role> roles;
 
+    @ManyToMany
+    @JoinTable(
+            name = "users_positions",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "position_id")
+    )
+    @JsonManagedReference
+    private List<Position> positions;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
