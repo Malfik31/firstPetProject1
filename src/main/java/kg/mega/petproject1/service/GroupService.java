@@ -16,10 +16,12 @@ public class GroupService {
     public Group create(Group group) {
         return groupRepository.save(group);
     }
+
     public void deleteById(Long id) {
         groupRepository.deleteById(id);
 
-}
+    }
+
     public List<Group> findAll() {
         return groupRepository.findAll();
     }

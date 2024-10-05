@@ -13,12 +13,12 @@ import java.util.List;
 @Table(name="positions")
 public class Position {
     @Id
-    Long id;
-    String name;
+    private Long id;
+    private String name;
 
     @ManyToMany(mappedBy = "positions")
     @JsonBackReference
-    List<User> users;
+    private List<User> users;
 
 
 }

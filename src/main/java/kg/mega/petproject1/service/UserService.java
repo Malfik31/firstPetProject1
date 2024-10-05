@@ -23,7 +23,6 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PositionRepository positionRepository;
-    private final RoleRepository roleRepository;
 
     public List<User> findAll() {
         return userRepository.findAll();
@@ -41,44 +40,28 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public void getById(@PathVariable Integer id) {
+    public User getById(@PathVariable Integer id) {
         Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            System.out.println(user.get());
-        }
-        throw new EntityNotFoundException("User with id: " + id + " not found");
+        return user.orElseThrow(() -> new EntityNotFoundException("User with id: " + id + " not found"));
     }
-    public List<User> findUserByRoleId(Integer roleId ) {
+
+    public List<User> findUserByRoleId(Integer roleId) {
         Optional<Role> roleOptional = roleRepository.findById(roleId);
         if (roleOptional.isPresent()) {
-            Role role = roleOptional.get();
-            return role.getUsers();
+            return roleOptional.get().getUsers();
         } else {
             throw new EntityNotFoundException("User with roleId: " + roleId + " not found");
         }
-    public List<User> findUserByRoleId(Integer roleId ) {
-        Optional<Role> roleOptional = roleRepository.findById(roleId);
-        if (roleOptional.isPresent()) {
-            Role role = roleOptional.get();
-            return role.getUsers();
-        } else {
-            throw new EntityNotFoundException("User with roleId: " + roleId + " not found");
-        }
-
     }
 
-    public List<User> findUserByPositionId(Long positionId){
+    public List<User> findUserByPositionId (Long positionId){
         Optional<Position> positionOptional = positionRepository.findById(positionId);
         if (positionOptional.isPresent()) {
             Position position = positionOptional.get();
             return position.getUsers();
-            //return positionRepository.findByPositionsContaining(position);
-        }else {
+        } else {
             throw new EntityNotFoundException("User with positionId: " + positionId + " not found");
         }
-    }
-
-
     }
 
     @Override
@@ -87,10 +70,9 @@ public class UserService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User: " + username + " not found");
         }
-        UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
+        return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
                 .build();
-        return userDetails;
     }
 }
