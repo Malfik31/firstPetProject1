@@ -3,24 +3,22 @@ package kg.mega.petproject1.service;
 import jakarta.persistence.EntityNotFoundException;
 import kg.mega.petproject1.entity.Role;
 import kg.mega.petproject1.repository.RoleRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class RoleService {
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
-    public RoleService(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
-
-    public List<Role> getAllRoles() {
+    public List<Role> getAll() {
         return roleRepository.findAll();
     }
 
-    public void createRole(Role role) {
+    public void save(Role role) {
         roleRepository.save(role);
     }
 
@@ -28,7 +26,7 @@ public class RoleService {
         roleRepository.deleteById(id);
     }
 
-    public Role getRoleById(Integer id) {
+    public Role getById(Integer id) {
         Optional<Role> role = roleRepository.findById(id);
         if (role.isPresent()) {
             return role.get();

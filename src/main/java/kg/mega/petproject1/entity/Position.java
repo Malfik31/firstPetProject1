@@ -16,7 +16,7 @@ public class Position {
     private Long id;
     private String name;
 
-    @ManyToMany(mappedBy = "positions")
+    @OneToMany
     @JsonBackReference
     private List<User> users;
 

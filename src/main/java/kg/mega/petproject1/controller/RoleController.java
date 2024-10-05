@@ -1,4 +1,12 @@
-package kg.mega.petproject2.controller;
+package kg.mega.petproject1.controller;
+
+import kg.mega.petproject1.entity.Role;
+import kg.mega.petproject1.service.RoleService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/role")
 public class RoleController {
@@ -10,18 +18,19 @@ public class RoleController {
 
     @GetMapping
     public List<Role> getRoles() {
-        return roleService.findAll();
+        return roleService.getAll();
     }
 
     @PutMapping
-    public Role addRole(@RequestBody Role role) {
-        return roleService.save(role);
+    public ResponseEntity<?> addRole(@RequestBody Role role) {
+        roleService.save(role);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping
-    public Role deleteRole(@RequestBody Role role) {
-        roleService.delete(role);
-        return role;
+    public ResponseEntity<?> delete(@RequestBody Integer roleId) {
+        roleService.deleteById(roleId);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{id}")
@@ -30,7 +39,8 @@ public class RoleController {
     }
 
     @PostMapping
-    public Role updateRole(@RequestBody Role role) {
-        return roleService.save(role);
+    public ResponseEntity<?> updateRole(@RequestBody Role role) {
+        roleService.save(role);
+        return ResponseEntity.ok().build();
     }
 }
