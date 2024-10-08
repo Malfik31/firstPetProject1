@@ -32,13 +32,13 @@ public class GroupController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public Group deleteById(@RequestParam Long id) {
+    public Group deleteById(@PathVariable Long id) {
         groupService.deleteById(id);
         return groupService.findById(id);
     }
 
     @GetMapping("/{id}")
-    public Group getGroupById(@RequestParam Long id) {
+    public Group getGroupById(@PathVariable Long id) {
         return groupService.findById(id);
     }
 }
