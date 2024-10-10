@@ -20,9 +20,9 @@ public class GroupController {
     }
 
     @PostMapping("/create")
-    public Group createGroup(@RequestBody Group group) {
+    public ResponseEntity<Group> createGroup(@RequestBody Group group) {
         groupService.create(group);
-        return (group);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping
